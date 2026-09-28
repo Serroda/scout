@@ -13,7 +13,7 @@ $(call inherit-product, device/motorola/scout/device.mk)
 # Inherit some common Lineage stuff.
 # Note: crDroid maps the vendor/lineage path to crdroidandroid/android_vendor_crdroid,
 # so this resolves to crDroid's config, not LineageOS's.
-$(call inherit-product, vendor/infinity/config/common.mk)
+$(call inherit-product, vendor/infinity/config/common_full_phone.mk)
 
 PRODUCT_DEVICE := scout
 PRODUCT_NAME := infinity_scout
