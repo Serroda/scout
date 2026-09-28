@@ -25,6 +25,9 @@
   <remote name="lineageos" fetch="https://github.com/LineageOS" revision="lineage-23.2" />
   <remote name="abdulla"   fetch="https://github.com/abdulla-li" />
 
+  <remote name="crdroid" fetch="https://github.com" revision="16.0" />
+
+
   <!-- Per-device HAL repos, not in crDroid's default.xml.
        Provides libmtkperf_client, MtkInCallService, libpowerhalwrap_vendor,
        android.hardware.power-service-mediatek and
