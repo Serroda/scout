@@ -4,4 +4,4 @@
 #
 
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/lineage_scout.mk
+    $(LOCAL_DIR)/infinity_scout.mk
