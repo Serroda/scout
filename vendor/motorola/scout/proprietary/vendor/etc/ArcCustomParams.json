@@ -1,0 +1,40 @@
+{
+  "configInfo": {
+    "FallbackDelayFrame":  10,
+    "DelayCloseInternal":  3000,
+    "zoomInFrameNum":      6,
+    "zoomOutFrameNum":     6,
+    "ZoomInEffect":        false,
+    "ZoomOutEffect":       false,
+    "FallbackEffectUW":    false,
+    "FallbackEffectW":     true,
+    "FallbackEffectT":     true
+  },
+  "wideToUltraWide": {
+    "timeIntervalFallback":    500,
+    "timeIntervalRecovery":    1000,
+    "focusDistThresholdDelta": 5,
+    "focusDistThreshold":      [2.5, 15],
+    "luxIndexThresholdDelta":  60.0,
+    "luxIndexThreshold":       [1320.0, 1600.0],
+    "userRatioRange":          [0.5, 3.0]
+  },
+  "teleToWide": {
+    "timeIntervalFallback":    500,
+    "timeIntervalRecovery":    1000,
+    "focusDistThresholdDelta": 5,
+    "focusDistThreshold":      [15, 35],
+    "luxIndexThresholdDelta":  0.0,
+    "luxIndexThreshold":       [1380.0, 1600.0],
+    "userRatioRange":          [3.0, 12.0]
+  },
+  "teleToUltraWide": {
+    "timeIntervalFallback":    500,
+    "timeIntervalRecovery":    1000,
+    "focusDistThresholdDelta": 5,
+    "focusDistThreshold":      [2.5, 15],
+    "luxIndexThresholdDelta":  0.0,
+    "luxIndexThreshold":       [1380.0, 1600.0],
+    "userRatioRange":          [3.0, 12.0]
+  }
+}

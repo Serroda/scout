@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configstore>
+    <config type="default">
+        <configuration>
+            <name>algoType</name>
+            <value>1</value>
+        </configuration>
+        <configuration>
+            <name>productName</name>
+            <value>scout</value>
+        </configuration>
+        <configuration>
+            <name>panelId</name>
+            <value>1</value>
+        </configuration>
+        <configuration>
+            <name>dbvNodePath</name>
+            <value>/sys/class/leds/lcd-backlight/brightness</value>
+        </configuration>
+        <configuration>
+            <name>dcNodePath</name>
+            <value>/sys/class/drm/card0-DSI-1/panelDC</value>
+        </configuration>
+        <configuration>
+            <name>panelNameNodePath</name>
+            <value>/sys/class/drm/card0-DSI-1/panelName</value>
+        </configuration>
+        <configuration>
+            <name>brightnessRange</name>
+            <value>16300</value>
+        </configuration>
+        <!-- windowLeft Top Width Height -->
+        <configuration>
+            <name>windowRect</name>
+            <value>711,19,64,64</value>
+        </configuration>
+        <configuration>
+            <name>panelWidthCorrect</name>
+            <value>1220</value>
+        </configuration>
+        <configuration>
+            <name>passByLuxThresh</name>
+            <value>5000.0</value>
+        </configuration>
+        <!-- channel raw data under 500lux -->
+        <configuration>
+            <name>single_golden_ch</name>
+            <value>273288,249656,61482,690240</value>
+        </configuration>
+        <configuration>
+            <name>lux_filter_so</name>
+            <value>panel_als_comp_filter_arcfox.so</value>
+        </configuration>
+
+        <!-- panel vendor list -->
+        <configuration>
+            <name>panelVendorList</name>
+            <value>csot,tianma,boe</value>
+        </configuration>
+        <configuration>
+            <name>lux_coef</name>
+            <value>1.0</value>
+        </configuration>
+        <!-- csot config -->
+        <configuration>
+            <!-- lux formula from vendor ams -->
+            <name>als_lux_ch_coefs_csot</name>
+            <value>0.0001,6.161,16.088,5.358,-2.286</value>
+        </configuration>
+        <configuration>
+            <!-- channel raw data under multi panel dbv & fps -->
+            <!-- Dec13 to be configured -->
+            <name>multi_dbv_golden_ch_csot</name>
+            <value>5,0,0,60,2000,7119,5407,1373,18149,0,0,60,4500,31060,23678,6436,79519,0,0,60,6716,72195,55625,15380,185885,0,0,60,9000,138522,107380,29850,357684,0,0,60,14000,370216,288884,80452,958702</value>
+        </configuration>
+        <configuration>
+            <!-- 1: dc/no-dc different model -->
+            <!-- 2: same model -->
+            <name>tf_type_csot</name>
+            <value>1</value>
+        </configuration>
+        <configuration>
+            <name>tfModePath_csot</name>
+            <value>/vendor/etc/sensors/als_comp_tf_csot_c8.config</value>
+        </configuration>
+        <configuration>
+            <name>tfModeDcPath_csot</name>
+            <value>/vendor/etc/sensors/als_comp_tf_csot_c8_dc_on.config</value>
+        </configuration>
+
+        <!-- tianma config -->
+        <configuration>
+            <name>als_lux_ch_coefs_tianma</name>
+            <value>0.0001,6.161,16.088,5.358,-2.286</value>
+        </configuration>
+        <configuration>
+            <name>multi_dbv_golden_ch_tianma</name>
+            <value>5,0,0,60,2000,6083,4232,1442,14452,0,0,60,4500,29240,20887,7446,69838,0,0,60,6716,68310,49659,17840,164202,0,0,60,9000,129791,95495,34359,313368,0,0,60,14000,341420,255560,92128,830069</value>
+        </configuration>
+        <configuration>
+            <name>tf_type_tianma</name>
+            <value>2</value>
+        </configuration>
+        <configuration>
+            <name>tfModePath_tianma</name>
+            <value>/vendor/etc/sensors/als_comp_tf_tianma.config</value>
+        </configuration>
+        <configuration>
+            <!-- channel raw data under multi panel dbv & fps -->
+            <!-- Dec13 to be configured -->
+            <name>weights_ch0_dcoff_tianma</name>
+            <value>1.55</value>
+        </configuration>
+
+        <!-- boe config -->
+        <configuration>
+            <name>als_lux_ch_coefs_boe</name>
+            <value>0.0001,6.161,16.088,5.358,-2.286</value>
+        </configuration>
+        <configuration>
+            <name>multi_dbv_golden_ch_boe</name>
+            <value>5,0,0,60,2000,7822,8179,1696,20885,0,0,60,4500,33930,35935,8221,92711,0,0,60,6716,71383,73782,18100,194816,0,0,60,9000,127861,128874,33327,347515,0,0,60,14000,319585,310088,85991,861709</value>
+        </configuration>
+
+    </config>
+</Configstore>

@@ -1,0 +1,9 @@
+on late-fs && property:ro.vendor.hw.nfc=ese_nq && property:ro.boot.strongbox_support=true
+    start se_update_agent
+
+service se_update_agent /vendor/bin/hw/se_update_agent.nxp apply-update
+    user jc_strongbox
+    group system
+    capabilities SYS_ADMIN SYS_NICE WAKE_ALARM
+    oneshot
+    disabled

@@ -1,0 +1,2 @@
+# aol_geofence_device is declared in device/mediatek/sepolicy_vndr/base/vendor/device.te
+# with the same attributes; redeclaring it here is a checkpolicy duplicate-type error.

@@ -1,0 +1,2 @@
+dontaudit mtk_hal_c2 default_prop:file { getattr open read map };
+allow mtk_hal_c2 hal_graphics_allocator_default_tmpfs:file { read write };

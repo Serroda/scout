@@ -1,0 +1,30 @@
+# Fingerprint
+com.motorola.hardware.biometric.fingerprint.IMotoFingerPrint/default            u:object_r:hal_fingerprint_test_service:s0
+com.motorola.hardware.biometric.fingerprint.IMotoFodSensorTest/default          u:object_r:hal_fingerprint_test_service:s0
+com.motorola.hardware.biometric.fingerprint.IMotoCaptiveSensorTest/default      u:object_r:hal_fingerprint_test_service:s0
+com.motorola.hardware.biometric.fingerprint.IMotoFpsNavigate/default            u:object_r:hal_fingerprint_test_service:s0
+com.fingerprints.fpc.extension.IFpcExtension/default                            u:object_r:hal_fingerprint_test_service:s0
+
+# NWK OPT Service
+vendor.mediatek.hardware.nwk_opt_new.INwkOptNew/default                         u:object_r:mtk_hal_nwk_opt_service:s0
+
+# Motorola SensorExt
+motorola.hardware.sensors.ISensorExt/default                                    u:object_r:mot_sensorext_service:s0
+
+# Motorola Panel
+com.motorola.hardware.display.panel.IDisplayPanel/default          u:object_r:hal_moto_panel_aidl_service:s0
+
+# Motorola FDR
+motorola.hardware.fdr.IFdrControl/default                         u:object_r:hal_fdrcontrol_aidl_service:s0
+
+# Custom HALs
+motorola.hardware.wireless.powershare.IMotPowerShare/default   u:object_r:hal_mot_powershare_service:s0
+vendor.zuialarm.hardware.alarm.IAlarm/default                  u:object_r:hal_zui_alarm_service:s0
+motorola.hardware.sensors.ISensorsCalibrate/default            u:object_r:hal_mot_sensorscalibrate_service:s0
+com.motorola.hardware.display.touch.IMotTouch/default          u:object_r:hal_mot_touch_service:s0
+vendor.dolby.dms.IDms/default                                  u:object_r:hal_dms_service:s0
+motorola.hardware.camera.imgtuner.aidl.IImageTuning/default    u:object_r:hal_mot_imgtuner_service:s0
+vendor.mediatek.hardware.rcs.IRcs/default                      u:object_r:mtk_hal_rcs_service:s0
+
+# MTK AIDL names already labeled in sepolicy_vndr (power, nvram, GNSS,
+# camera AOV/ATMs/BG/ISP, APU, VT, mapper/mediatek) are not repeated here.

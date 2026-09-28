@@ -1,0 +1,9 @@
+service vendor.weaver_nxp /vendor/bin/hw/android.hardware.weaver-service.nxp
+    class hal
+    user jc_weaver
+    group jc_weaver system
+    capabilities SYS_ADMIN SYS_NICE WAKE_ALARM
+    disabled
+
+on boot && property:ro.boot.strongbox_support=true
+    start vendor.weaver_nxp

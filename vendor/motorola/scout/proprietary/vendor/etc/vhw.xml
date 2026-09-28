@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--  Copyright (C) 2015/2016 Motorola Mobility, Lenovo Company -->
+<validation match="ro.boot.device">
+	<!-- device describes a version of mapping logic applicable to a matching device -->
+	<!-- the device string to do case-insensitive substring match against "name" is
+		to be queried from property indicated by "match", or its BL equivalent -->
+	<!-- incremented version tells boot script to update the validation tags from this file -->
+	<device name="aito" version="2.0">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Felica -->
+				<item>felica</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- eSIM -->
+				<item>esim</item>
+				<!-- esim id -->
+				<item>esimid</item>
+				<!-- Dedicated hardware profiles such as special builds for dogfooding
+				or any other purpouses and also or specific retail customers
+				without specific ro.carrier values that need custom behavior -->
+				<item>profile</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:NA,2:ROW,3:PRC,4:JP,5:DOCOMO,6:NA2,7:ROW2,8:PRC2,9:JP2,10:DOCOMO2</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>NA</item>
+				<item>ROW</item>
+				<item>PRC</item>
+				<item>JP</item>
+				<item>DOCOMO</item>
+				<item>NA2</item>
+				<item>ROW2</item>
+				<item>PRC2</item>
+				<item>JP2</item>
+				<item>DOCOMO2</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>6GB</item>
+				<item>8GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+			<string-array name="frontcolor/.range">
+				<item>steelwool</item>
+				<item>pumicestone</item>
+				<item>arabesque</item>
+				<item>clouddancer</item>
+				<item>gibraltarsea</item>
+				<item>springbud</item>
+				<item>lightestsky</item>
+				<item>other</item>
+			</string-array>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="felica/.auto">key=hwid;index=2;map=1:false,2:false,3:false,4:true,5:true,6:false,7:false,8:false,9:true,10:true</string>
+			<string name="felica/.chosen">mmi,</string>
+			<string name="felica/.system">ro.vendor.hw.</string>
+			<string-array name="felica/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:ese_st,2:ese_st,3:ese_st,4:ese_st,5:ese_st,6:ese_st,7:ese_st,8:ese_st,9:ese_st,10:ese_st</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>st</item>
+				<item>ese_st</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+			<!-- Dedicated hardware profiles can be programed to indicate special hardware builds -->
+			<string name="profile/.system">ro.vendor.hw.</string>
+			<string-array name="profile/.range">
+			    <!--Indicates HW builds that need to disable MotoNotes features-->
+				<item>mnotesd</item>
+				<item>default</item>
+			</string-array>
+		</constraints>
+
+		<mappings>
+			<!-- Variants describe mapping of feature combinations to device fingerprints,
+				to be set in property indicated by "export" -->
+			<variants export="ro.vendor.hw.variant" append="ro.vendor.product.device,ro.vendor.product.name,ro.product.device,ro.product.name">
+				<!-- ... same format as before ... -->
+			</variants>
+
+			<profile export="ro.vendor.product.profile">
+				<!-- ... same format as variants/products ... -->
+				<variant name="mnotesd">
+					<string name="/proc/config/profile/ascii">mnotesd</string>
+				</variant>
+			</profile>
+
+			<!-- Fix IKSWV-92467, same value "dnsp" with NA, it will match error if
+				they are in the same section -->
+			<skus-2 export="ro.vendor.product.hardware.sku.variant">
+				<!-- ... same format as variants/products ... -->
+				<variant name="dnsp">
+					<string name="radio">NA2</string>
+				</variant>
+			</skus-2>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant" default="n">
+				<!-- ... same format as variants/products ... -->
+				<variant name="dnsp">
+					<string name="radio">NA</string>
+				</variant>
+				<variant name="dns">
+					<string name="dualsim">true</string>
+					<string name="felica">false</string>
+				</variant>
+				<variant name="dn">
+					<string name="dualsim">true</string>
+					<string name="felica">true</string>
+				</variant>
+				<variant name="ns">
+					<string name="dualsim">false</string>
+					<string name="felica">false</string>
+				</variant>
+				<variant name="n">
+					<string name="dualsim">false</string>
+					<string name="felica">true</string>
+				</variant>
+			</skus>
+		</mappings>
+	</device>
+
+	<device name="vienna" version="1.2">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Felica -->
+				<item>felica</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- eSIM -->
+				<item>esim</item>
+				<!-- esim id -->
+				<item>esimid</item>
+				<!--SKU variant -->
+				<item>sku_variant</item>
+				<!-- strongbox support -->
+				<item>strongbox</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:APEM,2:LATAM,3:INDIA,4:JP,5:PRC,6:THINKPHONE</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>APEM</item>
+				<item>LATAM</item>
+				<item>PRC</item>
+				<item>JP</item>
+				<item>INDIA</item>
+				<item>THINKPHONE</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>6GB</item>
+				<item>8GB</item>
+				<item>12GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+				<item>512GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+			<string-array name="frontcolor/.range">
+				<item>grisaille</item>
+				<item>poinciana</item>
+				<item>latte</item>
+				<item>nauticalblue</item>
+				<item>carbonblack</item>
+				<item>cosmic</item>
+				<item>other</item>
+			</string-array>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="felica/.auto">key=hwid;index=2;map=1:false,2:false,3:false,4:true,5:false,6:false</string>
+			<string name="felica/.chosen">mmi,</string>
+			<string name="felica/.system">ro.vendor.hw.</string>
+			<string-array name="felica/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="strongbox/.auto">key=hwid;index=2;map=1:true,2:false,3:false,4:false,5:true,6:true</string>
+			<string name="strongbox/.chosen">mmi,</string>
+			<string name="strongbox/.system">ro.vendor.hw.</string>
+			<string-array name="strongbox/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:ese_st,2:esim_st,3:st,4:ese_st,5:ese_st,6:ese_st</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>st</item>
+				<item>esim_st</item>
+				<item>ese_st</item>
+			</string-array>
+
+			<string name="sku_variant/.cmdline">androidboot.</string>
+			<string-array name="sku_variant/.range">
+				<item>s</item>
+				<item>t</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+		</constraints>
+
+		<mappings>
+			<sku-variants export="ro.vendor.hw.sku_variant" writeback="sku_variant">
+				<!-- ... same format as before ... -->
+				<variant name="s">
+					<string name="radio">APEM</string>
+				</variant>
+				<variant name="t">
+					<string name="radio">THINKPHONE</string>
+				</variant>
+			</sku-variants>
+
+			<!-- Variants describe mapping of feature combinations to device fingerprints,
+				to be set in property indicated by "export" -->
+			<variants export="ro.vendor.hw.variant" append="ro.vendor.product.device,ro.vendor.product.name,ro.product.device,ro.product.name">
+				<!-- ... same format as before ... -->
+			</variants>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant" default="n">
+				<!-- ... same format as variants/products ... -->
+				<variant name="n">
+					<string name="dualsim">false</string>
+					<string name="strongbox">false</string>
+				</variant>
+				<variant name="ns">
+					<string name="dualsim">false</string>
+					<string name="strongbox">true</string>
+				</variant>
+				<variant name="dn">
+					<string name="dualsim">true</string>
+					<string name="strongbox">false</string>
+				</variant>
+				<variant name="dns">
+					<string name="dualsim">true</string>
+					<string name="strongbox">true</string>
+				</variant>
+			</skus>
+
+		</mappings>
+	</device>
+
+	<device name="scout" version="2.0">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Felica -->
+				<item>felica</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- eSIM -->
+				<item>esim</item>
+				<!-- esim id -->
+				<item>esimid</item>
+				<!--SKU variant -->
+				<item>sku_variant</item>
+				<!--CAMERA variant -->
+				<item>cam_variant</item>
+				<!--Thermal Config -->
+				<item>src_thermal</item>
+				<!-- Dedicated hardware profiles such as special builds for dogfooding
+				or any other purpouses and also or specific retail customers
+				without specific ro.carrier values that need custom behavior -->
+				<item>profile</item>
+				<!-- strongbox support -->
+				<item>strongbox</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:LATAM,2:PRC,3:INDIA,4:APEMEA,5:APEMEA2,6:INDIA2,7:LATAM2,8:PRC2,9:JP2</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>LATAM</item>
+				<item>PRC</item>
+				<item>INDIA</item>
+				<item>APEMEA</item>
+				<item>APEMEA2</item>
+				<item>INDIA2</item>
+				<item>LATAM2</item>
+				<item>PRC2</item>
+				<item>JP2</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>6GB</item>
+				<item>8GB</item>
+				<item>12GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+				<item>512GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:nq,2:ese_nq,3:false,4:ese_nq,5:ese_nq,6:false,7:nq,8:ese_nq,9:ese_nq</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>nq</item>
+				<item>ese_nq</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="felica/.auto">key=hwid;index=2;map=1:false,2:false,3:false,4:false,5:false,6:false,7:false,8:false,9:true</string>
+			<string name="felica/.chosen">mmi,</string>
+			<string name="felica/.system">ro.vendor.hw.</string>
+			<string-array name="felica/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="sku_variant/.cmdline">androidboot.</string>
+			<string-array name="sku_variant/.range">
+				<item>sn</item>
+				<item>n</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+			<string name="cam_variant/.auto">key=hwid;index=2;map=1:1,2:1,3:1,4:1,5:2,6:2,7:2,8:2,9:2</string>
+			<string name="cam_variant/.chosen">mmi,</string>
+			<string name="cam_variant/.system">ro.vendor.hw.</string>
+			<string-array name="cam_variant/.range">
+				<item>1</item>
+				<item>2</item>
+			</string-array>
+
+			<string name="src_thermal/.auto">key=hwid;index=2;map=1:scout,2:scout,3:scout_india,4:scout,5:scoutp,6:scoutp_india,7:scoutp,8:scoutp,9:scoutp_jp</string>
+			<string name="src_thermal/.system">ro.vendor.</string>
+			<string-array name="src_thermal/.range">
+				<item>scout</item>
+				<item>scout_india</item>
+				<item>scoutp</item>
+				<item>scoutp_india</item>
+				<item>scoutp_jp</item>
+			</string-array>
+
+			<!-- Dedicated hardware profiles can be programed to indicate special hardware builds -->
+			<string name="profile/.system">ro.vendor.hw.</string>
+			<string name="profile/.chosen">mmi,</string>
+			<string name="profile/.cmdline">androidboot.</string>
+
+			<string name="strongbox/.auto">key=hwid;index=2;map=1:false,2:true,3:false,4:true,5:true,6:false,7:false,8:true,9:true</string>
+			<string name="strongbox/.chosen">mmi,</string>
+			<string name="strongbox/.system">ro.vendor.hw.</string>
+			<string-array name="strongbox/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+		</constraints>
+
+		<mappings>
+			<sku-variants export="ro.vendor.hw.sku_variant" writeback="sku_variant">
+				<!-- ... same format as before ... -->
+				<variant name="sn">
+					<string name="radio">APEMEA</string>
+				</variant>
+				<variant-1 name="sn">
+					<string name="radio">APEMEA2</string>
+				</variant-1>
+				<variant-2 name="n">
+					<string name="nfc">nq</string>
+				</variant-2>
+			</sku-variants>
+
+			<!-- Variants describe mapping of feature combinations to device fingerprints,
+				to be set in property indicated by "export" -->
+			<variants export="ro.vendor.hw.variant" append="ro.vendor.product.device,ro.vendor.product.name,ro.product.device,ro.product.name">
+				<!-- ... same format as before ... -->
+			</variants>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant">
+				<!-- ... same format as variants/products ... -->
+				<variant name="d">
+					<string name="dualsim">true</string>
+					<string name="nfc">false</string>
+                                        <string name="strongbox">false</string>
+				</variant>
+				<variant name="b">
+					<string name="dualsim">false</string>
+					<string name="nfc">false</string>
+                                        <string name="strongbox">false</string>
+				</variant>
+				<variant name="dn">
+					<string name="dualsim">true</string>
+					<string name="nfc">nq</string>
+                                        <string name="strongbox">false</string>
+				</variant>
+				<variant name="bn">
+					<string name="dualsim">false</string>
+					<string name="nfc">nq</string>
+                                        <string name="strongbox">false</string>
+				</variant>
+				<variant name="dne">
+					<string name="dualsim">true</string>
+					<string name="nfc">ese_nq</string>
+                                        <string name="strongbox">true</string>
+				</variant>
+				<variant name="bne">
+					<string name="dualsim">false</string>
+					<string name="nfc">ese_nq</string>
+                                        <string name="strongbox">true</string>
+				</variant>
+
+			</skus>
+
+		</mappings>
+	</device>
+
+	<device name="oulu" version="1.3">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- eSIM -->
+				<item>esim</item>
+				<!-- esim id -->
+				<item>esimid</item>
+				<!-- Dedicated hardware profiles such as special builds for dogfooding
+				or any other purpouses and also or specific retail customers
+				without specific ro.carrier values that need custom behavior -->
+				<item>profile</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:NA</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>NA</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>6GB</item>
+				<item>8GB</item>
+				<item>12GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+				<item>512GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:nq</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>nq</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+			<!-- Dedicated hardware profiles can be programed to indicate special hardware builds -->
+			<string name="profile/.system">ro.vendor.hw.</string>
+			<string name="profile/.chosen">mmi,</string>
+			<string name="profile/.cmdline">androidboot.</string>
+
+		</constraints>
+
+		<mappings>
+			<!-- Variants describe mapping of feature combinations to device fingerprints,
+				to be set in property indicated by "export" -->
+			<variants export="ro.vendor.hw.variant" append="ro.vendor.product.device,ro.vendor.product.name,ro.product.device,ro.product.name">
+				<!-- ... same format as before ... -->
+			</variants>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant" default="bn">
+				<!-- ... same format as variants/products ... -->
+				<variant name="dn">
+					<string name="dualsim">true</string>
+				</variant>
+			</skus>
+
+		</mappings>
+	</device>
+
+	<device name="nice" version="0.7">
+
+		<!-- Features list variable hardware components for this device -->
+		<features>
+			<string-array name=".features">
+				<!-- RF banding -->
+				<item>radio</item>
+				<!-- RAM size -->
+				<item>ram</item>
+				<!-- Storage size -->
+				<item>storage</item>
+				<!-- Dual SIM function -->
+				<item>dualsim</item>
+				<!-- Front color -->
+				<item>frontcolor</item>
+				<!-- Fingerprint sensor -->
+				<item>fps</item>
+				<!-- Felica -->
+				<item>felica</item>
+				<!-- Near Field Communication function -->
+				<item>nfc</item>
+				<!-- eCompass -->
+				<item>ecompass</item>
+				<!-- eSIM -->
+				<item>esim</item>
+				<!-- esim id -->
+				<item>esimid</item>
+				<!--SKU variant -->
+				<item>sku_variant</item>
+				<!-- strongbox support -->
+				<item>strongbox</item>
+			</string-array>
+		</features>
+
+		<!-- Attributes list allowed values for features -->
+		<attributes>
+			<string-array name=".attributes">
+				<!-- range is a comma-separated list of allowed string values -->
+				<item>.range</item>
+				<!-- cmdline items must be exported to kernel cmdline, with prefix given in the value -->
+				<item>.cmdline</item>
+				<!-- chosen items must be exported to kernel devtree, with prefix given in the value -->
+				<item>.chosen</item>
+				<!-- system items must be exported as system property, with prefix given in the value -->
+				<item>.system</item>
+				<!-- same format as before, plus new attribute ".auto" -->
+				<!-- auto indicates BL should auto-fill respective tag if it is empty -->
+				<!-- this can work either using "hwid", "hwprobe" or "uspace" method -->
+				<item>.auto</item>
+			</string-array>
+		</attributes>
+
+		<!-- Constraints describe interpretation of attributes, and may contain data to feed to BL -->
+		<constraints>
+			<!-- look up value by matching "hwid" table, combination with current device,
+				then parsing out field indicated by "index",
+				and then translating the field as prescribed by "map" -->
+			<string name="radio/.auto">key=hwid;index=2;map=1:LATAM,2:APEM,3:PRC,4:INDIA,5:BRLAP,6:EMEAP,7:OTLTM,8:OTAPM</string>
+			<string name="radio/.cmdline">androidboot.</string>
+			<string name="radio/.system">ro.vendor.hw.</string>
+			<string-array name="radio/.range">
+				<item>APEM</item>
+				<item>LATAM</item>
+				<item>PRC</item>
+				<item>INDIA</item>
+				<item>BRLAP</item>
+				<item>EMEAP</item>
+				<item>OTLTM</item>
+				<item>OTAPM</item>
+			</string-array>
+
+			<!-- use result of ram HW detection to fill the field -->
+			<string name="ram/.auto">key=hwprobe;index=__ram</string>
+			<string name="ram/.system">ro.vendor.hw.</string>
+			<string-array name="ram/.range">
+				<item>6GB</item>
+				<item>8GB</item>
+				<item>12GB</item>
+			</string-array>
+
+			<!-- use result of storage HW detection to fill the field -->
+			<string name="storage/.auto">key=hwprobe;index=__storage</string>
+			<string name="storage/.system">ro.vendor.hw.</string>
+			<string-array name="storage/.range">
+				<item>128GB</item>
+				<item>256GB</item>
+				<item>512GB</item>
+			</string-array>
+
+			<string name="dualsim/.auto">default=true</string>
+			<string name="dualsim/.system">ro.vendor.hw.</string>
+			<string-array name="dualsim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="esim/.auto">default=false</string>
+			<string name="esim/.system">ro.vendor.hw</string>
+			<string-array name="esim/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<!-- frontcolor has to be programmed explicitly -->
+			<string name="frontcolor/.system">ro.vendor.hw.</string>
+
+			<string name="fps/.auto">default=true</string>
+			<string name="fps/.chosen">mmi,</string>
+			<string name="fps/.system">ro.vendor.hw.</string>
+			<string-array name="fps/.range">
+				<item>true</item>
+			</string-array>
+
+			<string name="felica/.auto">default=false</string>
+			<string name="felica/.chosen">mmi,</string>
+			<string name="felica/.system">ro.vendor.hw.</string>
+			<string-array name="felica/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="strongbox/.auto">key=hwid;index=2;map=1:false,2:false,3:true,4:false,5:false,6:false,7:false,8:false</string>
+			<string name="strongbox/.chosen">mmi,</string>
+			<string name="strongbox/.system">ro.vendor.hw.</string>
+			<string-array name="strongbox/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="ecompass/.auto">default=true</string>
+			<string name="ecompass/.chosen">mmi,</string>
+			<string name="ecompass/.system">ro.vendor.hw.</string>
+			<string-array name="ecompass/.range">
+				<item>true</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="nfc/.auto">key=hwid;index=2;map=1:esim_st,2:esim_st,3:ese_st,4:false,5:esim_st,6:esim_st,7:esim_st,8:esim_st</string>
+			<string name="nfc/.chosen">mmi,</string>
+			<string name="nfc/.system">ro.vendor.hw.</string>
+			<string-array name="nfc/.range">
+				<item>st</item>
+				<item>ese_st</item>
+				<item>esim_st</item>
+				<item>false</item>
+			</string-array>
+
+			<string name="sku_variant/.cmdline">androidboot.</string>
+			<string-array name="sku_variant/.range">
+				<item>n</item>
+			</string-array>
+
+			<string name="esimid/.auto">uspace=config;name=esimid</string>
+			<string name="esimid/.system">ro.vendor.</string>
+
+		</constraints>
+
+		<mappings>
+			<sku-variants export="ro.vendor.hw.sku_variant" writeback="sku_variant">
+				<!-- ... same format as before ... -->
+				<variant name="n">
+					<string name="nfc">esim_st</string>
+				</variant>
+			</sku-variants>
+
+			<!-- Variants describe mapping of feature combinations to device fingerprints,
+				to be set in property indicated by "export" -->
+			<variants export="ro.vendor.hw.variant" append="ro.vendor.product.device,ro.vendor.product.name,ro.product.device,ro.product.name">
+				<!-- ... same format as before ... -->
+			</variants>
+
+			<!-- SKUs describe mapping of feature combinations to factory SKUs,
+				to be set in property indicated by "export" -->
+			<skus export="ro.vendor.product.hardware.sku.variant" default="n">
+				<!-- ... same format as variants/products ... -->
+				<variant name="n">
+					<string name="dualsim">false</string>
+					<string name="strongbox">false</string>
+					<string name="nfc">esim_st</string>
+				</variant>
+				<variant name="dn">
+					<string name="dualsim">true</string>
+					<string name="strongbox">false</string>
+					<string name="nfc">esim_st</string>
+				</variant>
+				<variant name="dns">
+					<string name="dualsim">true</string>
+					<string name="strongbox">true</string>
+					<string name="nfc">ese_st</string>
+				</variant>
+				<variant name="d">
+					<string name="dualsim">true</string>
+					<string name="strongbox">false</string>
+					<string name="nfc">false</string>
+				</variant>
+			</skus>
+
+		</mappings>
+	</device>
+
+</validation>
+
