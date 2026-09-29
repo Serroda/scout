@@ -20,9 +20,9 @@ echo "5. Resync dependencies"
 
 echo "5.1. Patch check_boot_jars allowed list"
 ALLOWED_LIST="build/soong/scripts/check_boot_jars/package_allowed_list.txt"
-if ! grep -q "com\\\.motorola\\\." "$ALLOWED_LIST"; then
-    echo 'com\.motorola\..*' >> "$ALLOWED_LIST"
-    echo "-> Rule com.motorola added to $ALLOWED_LIST"
+if ! grep -F -q 'com\.motorola' "$ALLOWED_LIST"; then
+    printf '\n# Moto adds\ncom\\.motorola\ncom\\.motorola\\..*\n' >> "$ALLOWED_LIST"
+    echo "-> Rules com.motorola added to $ALLOWED_LIST"
 fi
 
 echo "6. Setup env"
