@@ -18,6 +18,13 @@ cp -fr device/motorola/scout/local_manifests .repo/
 echo "5. Resync dependencies"
 /opt/crave/resync.sh
 
+echo "5.1. Patch check_boot_jars allowed list"
+ALLOWED_LIST="build/soong/scripts/check_boot_jars/package_allowed_list.txt"
+if ! grep -q "com\\\.motorola\\\." "$ALLOWED_LIST"; then
+    echo 'com\.motorola\..*' >> "$ALLOWED_LIST"
+    echo "-> Rule com.motorola added to $ALLOWED_LIST"
+fi
+
 echo "6. Setup env"
 source build/envsetup.sh
 
