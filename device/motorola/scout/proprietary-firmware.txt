@@ -7,7 +7,7 @@ connsys_gnss.img;AB
 connsys_wifi.img;AB
 dpm.img;AB
 dtbo.img;AB
-efuse.img;AB
+# efuse.img;AB
 gpueb.img;AB
 gz.img;AB
 lk.img;AB
