@@ -225,4 +225,4 @@ WIFI_HIDL_UNIFIED_SUPPLICANT_SERVICE_RC_ENTRY := true
 
 # Inherit the proprietary files
 include vendor/motorola/scout/BoardConfigVendor.mk
-# include vendor/motorola/scout-motcamera/BoardConfigVendor.mk
+include vendor/motorola/scout-motcamera/BoardConfigVendor.mk
