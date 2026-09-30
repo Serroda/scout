@@ -10,7 +10,7 @@ echo "2. Init Infinity X repo"
 repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
 
 echo "3. Download scout files"
-curl -sSL https://gitlab.com/Serroda/scout_v/-/archive/main/scout_v-main.tar.gz | tar -xz --strip-components=1
+curl -sSL https://github.com/Serroda/scout/archive/refs/tags/v1.0.tar.gz | tar -xz --strip-components=1
 
 echo "4. Copy new local_manifest inside .repo"
 cp -fr device/motorola/scout/local_manifests .repo/
