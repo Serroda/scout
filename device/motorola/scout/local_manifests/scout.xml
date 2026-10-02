@@ -43,4 +43,5 @@
   <project path="device/mediatek/sepolicy_vndr"
            name="crdroidandroid/android_device_mediatek_sepolicy_vndr"
            remote="crdroid" revision="16.0" />
+    
 </manifest>
