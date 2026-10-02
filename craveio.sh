@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "<Crave.io build for motorola edge 60 fusion (scout) with Infinity X - Android 16>"
+echo "<Crave.io build for motorola edge 60 fusion (scout) with CRDROID - Android 16>"
 
 echo "1. Remove old manifest"
 rm -rf .repo/local_manifests
 
-echo "2. Init Infinity X repo"
-repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
+echo "2. Init Crdorid repo"
+repo init -u https://github.com/crdroidcustom/manifest.git -b qpr1 --git-lfs --depth=1
 
 echo "3. Download scout files"
 rm -rf ./scoutfiles ./device/motorola ./vendor/motorola
@@ -36,6 +36,6 @@ echo "6. Setup env"
 source build/envsetup.sh
 
 echo "7. Build"
-lunch infinity_scout-userdebug && m bacon
+brunch scout
 
 echo "<--Build finished-->"

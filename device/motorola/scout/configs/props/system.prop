@@ -11,7 +11,3 @@ persist.radio.is_vonr_enabled_1=true
 persist.vendor.mtk_rcs_single_reg_support=0
 persist.vendor.mtk_uce_support=0
 ril.subscription.types=RUIM
-
-ro.product.marketname=Motorola Edge 60 Fusion
-ro.infinity.soc=Mediatek 7300
-ro.infinity.camera=50MP + 13MP
