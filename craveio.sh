@@ -17,6 +17,7 @@ git lfs pull
 cd ..
 cp -rf ./scoutfiles/device .
 cp -rf ./scoutfiles/vendor .
+rm -rf ./scoutfiles
 
 echo "4. Copy new local_manifest inside .repo"
 cp -fr device/motorola/scout/local_manifests .repo/
