@@ -1,17 +1,17 @@
 #!/bin/bash
 set -e
 
-echo "<Crave.io build for motorola edge 60 fusion (scout) with Infinity X - Android 16>"
+echo "<Crave.io build for motorola edge 60 fusion (scout) with Infinity X - Android 17>"
 
 echo "1. Remove old manifest"
 rm -rf .repo/local_manifests
 
 echo "2. Init Infinity X repo"
-repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 16 -g default,-mips,-darwin,-notdefault
+repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfinity-X/manifest -b 17 -g default,-mips,-darwin,-notdefault
 
 echo "3. Download scout files"
 rm -rf ./scoutfiles ./device/motorola ./vendor/motorola
-git clone --depth=1 https://github.com/Serroda/scout scoutfiles
+git clone --depth=1 --branch=main https://github.com/Serroda/scout scoutfiles
 cd ./scoutfiles
 git lfs pull
 cd ..
