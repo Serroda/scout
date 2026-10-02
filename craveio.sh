@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "<Crave.io build for motorola edge 60 fusion (scout) with CRDROID - Android 17>"
+echo "<Crave.io build for motorola edge 60 fusion (scout) with CRDROID - Android 16>"
 
 echo "1. Remove old manifest"
 rm -rf .repo/local_manifests
