@@ -22,13 +22,7 @@ rm -rf ./scoutfiles
 echo "4. Copy new local_manifest inside .repo"
 cp -fr device/motorola/scout/local_manifests .repo/
 
-echo "5. Download treble patches"
-rm -rf ./treblepatches 
-git clone --depth=1 --branch=android-16.0 https://github.com/TrebleDroid/treble_manifest treblepatches
-cp -rf ./treblepatches/* .repo/local_manifests/
-rm -rf ./treblepatches
-
-echo "6. Resync dependencies"
+echo "5. Resync dependencies"
 /opt/crave/resync.sh
 
 echo "6.1. Patch check_boot_jars allowed list"
@@ -39,10 +33,13 @@ if ! grep -F -q 'com\.motorola' "$ALLOWED_LIST"; then
 fi
 
 echo "6.2. Apply TrebleDroid patches"
-rm -rf ./treble_experimentations
-git clone --depth=1 --branch=master https://github.com/TrebleDroid/treble_experimentations treble_experimentations
-bash treble_experimentations/apply-patches.sh .
-rm -rf ./treble_experimentations
+rm -rf ./patches-for-developers.zip ./patches
+curl -LO https://github.com/TrebleDroid/treble_experimentations/releases/latest/download/patches-for-developers.zip
+unzip patches-for-developers.zip
+curl -LO https://raw.githubusercontent.com/TrebleDroid/treble_experimentations/master/apply-patches.sh
+chmod +x apply-patches.sh
+bash apply-patches.sh "$(pwd)"
+rm -rf ./patches-for-developers.zip ./patches
 
 echo "7. Setup env"
 source build/envsetup.sh
