@@ -40,8 +40,9 @@ fi
 
 echo "6.2. Apply TrebleDroid patches"
 rm -rf ./treble_experimentations
-git clone --depth=1 --branch=master https://github.com/phhusson/treble_experimentations treble_experimentations
+git clone --depth=1 --branch=master https://github.com/TrebleDroid/treble_experimentations treble_experimentations
 bash treble_experimentations/apply-patches.sh .
+rm -rf ./treble_experimentations
 
 echo "7. Setup env"
 source build/envsetup.sh
