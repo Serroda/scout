@@ -11,7 +11,7 @@ repo init --depth=1 --no-repo-verify --git-lfs -u https://github.com/ProjectInfi
 
 echo "3. Download scout files"
 rm -rf ./scoutfiles ./device/motorola ./vendor/motorola
-git clone --depth=1 https://github.com/Serroda/scout scoutfiles
+git clone --depth=1 --branch=16 https://github.com/Serroda/scout scoutfiles
 cd ./scoutfiles
 git lfs pull
 cd ..
