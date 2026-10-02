@@ -1,13 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "<Crave.io build for motorola edge 60 fusion (scout) with CRDROID - Android 16>"
+echo "<Crave.io build for motorola edge 60 fusion (scout) with CRDROID - Android 17>"
 
 echo "1. Remove old manifest"
 rm -rf .repo/local_manifests
 
 echo "2. Init Crdorid repo"
-repo init -u https://github.com/crdroidcustom/manifest.git -b qpr1 --git-lfs --depth=1
+repo init -u https://github.com/crdroidandroid/android.git -b 16.0 --git-lfs --no-clone-bundle
 
 echo "3. Download scout files"
 rm -rf ./scoutfiles ./device/motorola ./vendor/motorola
