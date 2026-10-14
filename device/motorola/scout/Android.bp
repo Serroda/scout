@@ -5,3 +5,10 @@
 
 soong_namespace {
 }
+
+shared_libs: [
+    "com.motorola.hardware.display.panel-V1-ndk",
+    "libbinder_ndk",
+    "libbase",
+    "liblog",
+],
