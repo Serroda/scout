@@ -32,15 +32,6 @@ if ! grep -F -q 'com\.motorola' "$ALLOWED_LIST"; then
     echo "-> Rules com.motorola added to $ALLOWED_LIST"
 fi
 
-# echo "6.2. Apply TrebleDroid patches"
-# rm -rf ./patches-for-developers.zip ./patches
-# curl -LO https://github.com/TrebleDroid/treble_experimentations/releases/latest/download/patches-for-developers.zip
-# unzip patches-for-developers.zip
-# curl -LO https://raw.githubusercontent.com/TrebleDroid/treble_experimentations/master/apply-patches.sh
-# chmod +x apply-patches.sh
-# bash apply-patches.sh "$(pwd)"
-# rm -rf ./patches-for-developers.zip ./patches
-
 echo "7. Setup env"
 source build/envsetup.sh
 
