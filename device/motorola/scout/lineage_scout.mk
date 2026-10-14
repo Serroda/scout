@@ -20,6 +20,7 @@ PRODUCT_NAME := lineage_scout
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := motorola edge 60 fusion
 PRODUCT_MANUFACTURER := motorola
+PRODUCT_PACKAGES := $(filter-out AxQuickLook QuickLook AxThemeStore AxSandbox, $(PRODUCT_PACKAGES))
 
 PRODUCT_GMS_CLIENTID_BASE := android-motorola
 
