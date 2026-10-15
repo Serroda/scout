@@ -21,9 +21,9 @@ cc_library {
     local_include_dirs: ["include"],
     shared_libs: [
         "libbase",
+        "libbinder_ndk",
         "liblog",
         "libutils",
-        "libhidlbase",
     ],
     header_libs: ["libhardware_headers"],
 }
